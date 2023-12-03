@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    x:Class="BindingFail.UserControls.FieldTag"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="Root"
+    CompressedLayout.IsHeadless="True">
+    <Frame.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnControlTapped" />
+    </Frame.GestureRecognizers>
+    <Label
+        FontSize="{x:Binding Source={x:Reference Root},
+                             Path=FontSize}"
+        HorizontalOptions="Center"
+        Text="{x:Binding Source={x:Reference Root},
+                         Path=Text,
+                         Mode=TwoWay}"
+        TextColor="{x:Binding Source={x:Reference Root},
+                              Path=TextColor,
+                              Mode=OneWay}"
+        VerticalOptions="Center" />
+</Frame>

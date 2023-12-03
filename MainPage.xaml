@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BindingFail.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:BindingFail.UserControls"
+    xmlns:model="clr-namespace:BindingFail.Models"
+    xmlns:vm="clr-namespace:BindingFail.ViewModels"
+    x:Name="Root"
+    x:DataType="vm:MainViewModel"
+    BackgroundColor="White">
+
+    <VerticalStackLayout Spacing="20">
+        <Label Text="In Release" />
+        <ScrollView
+            HorizontalScrollBarVisibility="Never"
+            Orientation="Horizontal"
+            VerticalScrollBarVisibility="Never"
+            Visual="Default">
+            <HorizontalStackLayout BindableLayout.ItemsSource="{x:Binding Models, Mode=OneWay}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type model:Tag}">
+                        <control:FieldTag
+                            Margin="10,0,0,0"
+                            Padding="10,5"
+                            BorderColor="{x:StaticResource Secondary}"
+                            CheckedCommand="{x:Binding Source={x:Reference Root},
+                                                       Path=ViewModel.TestCommand,
+                                                       Mode=OneWay}"
+                            CheckedCommandParameter="{x:Binding .}"
+                            CornerRadius="20"
+                            HasShadow="False"
+                            IsChecked="{x:Binding IsChecked,
+                                                  Mode=TwoWay}"
+                            IsCheckedBackgroundColor="{x:StaticResource Secondary}"
+                            IsUnCheckedBackgroundColor="{x:AppThemeBinding Dark=Transparent,
+                                                                           Light={x:StaticResource White}}"
+                            MinimumWidthRequest="80"
+                            Text="{x:Binding DisplayValue,
+                                             Mode=OneWay}"
+                            TextColor="{x:StaticResource Black}" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </HorizontalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+
+</ContentPage>

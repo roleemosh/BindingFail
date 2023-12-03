@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    x:Class="BindingFail.UserControls.GoodFieldTag"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="RootGoodFieldTag"
+    CompressedLayout.IsHeadless="True">
+    <Frame.GestureRecognizers>
+        <TapGestureRecognizer Tapped="OnControlTapped" />
+    </Frame.GestureRecognizers>
+    <Label
+        FontSize="{x:Binding Source={x:Reference RootGoodFieldTag},
+                             Path=FontSize}"
+        HorizontalOptions="Center"
+        Text="{x:Binding Source={x:Reference RootGoodFieldTag},
+                         Path=Text,
+                         Mode=TwoWay}"
+        TextColor="{x:Binding Source={x:Reference RootGoodFieldTag},
+                              Path=TextColor,
+                              Mode=OneWay}"
+        VerticalOptions="Center" />
+</Frame>
